@@ -1,0 +1,19 @@
+interface Printable:
+    void print(self);
+
+generic(T) where T: Printable
+void show(T item):
+    item.print();
+
+struct Number:
+    i32 value;
+
+methods Number:
+    void print(self):
+        return;
+
+i32 main():
+    Number n;
+    n.value = 42;
+    show(n);
+    return 1;

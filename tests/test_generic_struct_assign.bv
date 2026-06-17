@@ -1,0 +1,8 @@
+struct Point:
+    i32 x;
+    i32 y;
+
+i32 main():
+    Point p;
+    p.x = 5;
+    return p.x;

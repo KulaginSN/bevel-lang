@@ -1,0 +1,6 @@
+i32 main():
+    [i32; 7] arr = [1, 2, 3, 4, 5, 6, 7];
+    []i32 s = arr;
+    i64 len = s.len;
+    i32 result = 0;
+    return result;

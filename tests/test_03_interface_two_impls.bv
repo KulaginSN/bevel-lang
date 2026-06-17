@@ -1,0 +1,35 @@
+interface Shape:
+    f64 area(self);
+
+struct Circle:
+    f64 radius;
+
+struct Rectangle:
+    f64 width;
+    f64 height;
+
+methods Circle:
+    f64 area(self):
+        return 3.14 * self.radius * self.radius;
+
+methods Rectangle:
+    f64 area(self):
+        return self.width * self.height;
+
+i32 main():
+    Circle c;
+    c.radius = 5.0;
+    Shape s1 = c;
+    
+    Rectangle r;
+    r.width = 3.0;
+    r.height = 4.0;
+    Shape s2 = r;
+    
+    f64 a1 = s1.area();
+    f64 a2 = s2.area();
+    
+    if (a1 > 78.0):
+        if (a2 > 11.0):
+            return 2;
+    return 0;

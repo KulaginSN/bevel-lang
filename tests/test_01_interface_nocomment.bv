@@ -1,0 +1,5 @@
+interface Shape:
+    f64 area(self);
+
+i32 main():
+    return 42;

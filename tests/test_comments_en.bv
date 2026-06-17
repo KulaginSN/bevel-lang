@@ -1,0 +1,10 @@
+// This is the main function
+i32 main():
+    // Create a variable
+    i32 x = 42;
+    
+    /* This is a multi-line
+       comment in English */
+    
+    // Return the result
+    return x;

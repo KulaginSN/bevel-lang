@@ -1,0 +1,7 @@
+i32 main():
+    [i32; 5] arr = [10, 20, 30, 40, 50];
+    []i32 s = arr;
+    i32 sum = 0;
+    for (i32 i = 0; i < s.len; i = i + 1):
+        sum = sum + s[i];
+    return sum;

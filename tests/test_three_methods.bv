@@ -1,0 +1,22 @@
+struct Test:
+    i32 value;
+
+methods Test:
+    i32 get(self):
+        return self.value;
+    
+    i32 add(self):
+        return self.value + 1;
+    
+    i32 mul(self):
+        return self.value * 2;
+
+i32 main():
+    Test t;
+    t.value = 5;
+    i32 a = t.get();
+    i32 b = t.add();
+    i32 c = t.mul();
+    if (a == 5 && b == 6 && c == 10):
+        return 1;
+    return 0;

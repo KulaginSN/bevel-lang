@@ -1,0 +1,13 @@
+struct Point:
+    i32 x;
+    i32 y;
+
+methods Point:
+    i32 sum(Point self):
+        return self.x + self.y;
+
+i32 main():
+    Point p;
+    p.x = 10;
+    p.y = 20;
+    return p.sum();

@@ -1,0 +1,11 @@
+generic(T)
+T max_val(T a, T b):
+    if (a > b):
+        return a;
+    return b;
+
+i32 main():
+    i32 x = max_val(i32, 5, 10);
+    if (x == 10):
+        return 1;
+    return 0;

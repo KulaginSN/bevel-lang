@@ -1,0 +1,5 @@
+int main():
+    [i32; 5] arr = [1, 2, 3, 4, 5];
+    arr[0] = 100;
+    i32 x = arr[0];
+    return x;

@@ -1,0 +1,130 @@
+// ===== ЭТАП 1: Простые интерфейсы =====
+interface Shape:
+    f64 area(self);
+
+interface Printable:
+    void print_info(self);
+
+// ===== ЭТАП 2: Структуры с неявной реализацией =====
+struct Circle:
+    f64 radius;
+
+struct Rectangle:
+    f64 width;
+    f64 height;
+
+// Circle неявно реализует Shape и Printable
+methods Circle:
+    f64 area(self):
+        return 3.14159 * self.radius * self.radius;
+    
+    void print_info(self):
+        std.print("Circle r=", self.radius, "\n");
+
+// Rectangle неявно реализует только Shape
+methods Rectangle:
+    f64 area(self):
+        return self.width * self.height;
+
+// ===== ЭТАП 3: Простые дженерики =====
+generic(T)
+T max_val(T a, T b):
+    if (a > b):
+        return a;
+    return b;
+
+// ===== ЭТАП 4: Generic структура =====
+generic(T)
+struct Container:
+    T value;
+    bool is_set;
+
+// ===== ЭТАП 5: Generic методы =====
+generic(T)
+methods Container:
+    T get(self):
+        return self.value;
+    
+    void set(self, T val):
+        self.value = val;
+        self.is_set = true;
+
+// ===== ЭТАП 6: Дженерики + where (ограничения) =====
+generic(T) where T: Shape
+f64 total_area(T a, T b):
+    return a.area() + b.area();
+
+// ===== ЭТАП 7: Несколько ограничений =====
+generic(T) where T: Shape, T: Printable
+void describe_and_measure(T shape):
+    shape.print_info();
+    f64 a = shape.area();
+    std.print("Area: ", a, "\n");
+
+// ===== ЭТАП 8: Использование Result pattern (из спецификации) =====
+generic(T, E)
+struct Result:
+    T value;
+    E error;
+    bool is_ok;
+
+generic(T, E)
+Result(T, E) Ok(T val):
+    Result(T, E) r;
+    r.value = val;
+    r.is_ok = true;
+    return r;
+
+generic(T, E)
+Result(T, E) Err(E err):
+    Result(T, E) r;
+    r.error = err;
+    r.is_ok = false;
+    return r;
+
+// ===== ЭТАП 9: Generic + Interface в реальной функции =====
+enum i32 MathError:
+    NegativeValue = 1;
+
+generic(T) where T: Shape
+Result(f64, MathError) safe_area(T shape):
+    f64 a = shape.area();
+    if (a < 0.0):
+        return Err(MathError, MathError.NegativeValue);
+    return Ok(f64, MathError, a);
+
+// ===== Точка входа =====
+i32 main():
+    // Тест 1: Простой upcast в интерфейс
+    Circle c;
+    c.radius = 5.0;
+    Shape s1 = c;
+    f64 a1 = s1.area();  // Должно быть 78.54
+    
+    // Тест 2: Upcast другой структуры
+    Rectangle r;
+    r.width = 3.0;
+    r.height = 4.0;
+    Shape s2 = r;
+    f64 a2 = s2.area();  // Должно быть 12.0
+    
+    // Тест 3: Generic функция max_val
+    i32 m1 = max_val(i32, 5, 10);      // 10
+    f64 m2 = max_val(f64, 3.14, 2.71); // 3.14
+    
+    // Тест 4: Generic структура
+    Container(i32) ci;
+    ci.set(42);
+    i32 v = ci.get();  // 42
+    
+    // Тест 5: Generic + where
+    f64 total = total_area(Circle, c, r);  // 78.54 + 12.0 = 90.54
+    
+    // Тест 6: Generic + множественные where
+    describe_and_measure(Circle, c);
+    
+    // Тест 7: Result pattern
+    Result(f64, MathError) res = safe_area(Circle, c);
+    if (res.is_ok):
+        return 0;  // Успех
+    return 1;

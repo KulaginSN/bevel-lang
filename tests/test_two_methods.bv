@@ -1,0 +1,21 @@
+struct Counter:
+    i32 count;
+    i32 max;
+
+methods Counter:
+    bool has_next(self):
+        return self.count < self.max;
+    
+    i32 next(self):
+        i32 val = self.count;
+        self.count = self.count + 1;
+        return val;
+
+i32 main():
+    Counter c;
+    c.count = 0;
+    c.max = 3;
+    if (c.has_next()):
+        i32 v = c.next();
+        return v;
+    return 0;

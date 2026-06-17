@@ -1,0 +1,6 @@
+i32 main():
+    return Status.Err;
+
+enum i32 Status:
+    Ok = 0;
+    Err = 1;

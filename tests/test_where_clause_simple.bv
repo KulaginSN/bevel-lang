@@ -1,0 +1,17 @@
+interface Comparable:
+    bool compare(self, i32 other);
+
+struct Number:
+    i32 value;
+
+methods Number:
+    bool compare(self, i32 other):
+        return self.value > other;
+
+i32 main():
+    Number n1;
+    n1.value = 10;
+    
+    if (n1.compare(5)):
+        return 1;
+    return 0;

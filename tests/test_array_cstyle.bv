@@ -1,0 +1,4 @@
+i32 main():
+    i32[5] arr;
+    arr[0] = 42;
+    return arr[0];

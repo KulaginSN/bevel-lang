@@ -1,0 +1,10 @@
+// Главная функция / Main function
+i32 main():
+    // Создаём вектор / Create a vector
+    i32 x = 42;
+    
+    /* Многострочный комментарий
+       Multi-line comment
+       Смешанный текст / Mixed text */
+    
+    return x; // Возврат / Return

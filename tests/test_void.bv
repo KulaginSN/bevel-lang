@@ -1,0 +1,12 @@
+struct Counter:
+    i32 count;
+
+methods Counter:
+    void reset(self):
+        self.count = 0;
+
+i32 main():
+    Counter c;
+    c.count = 10;
+    c.reset();
+    return c.count;

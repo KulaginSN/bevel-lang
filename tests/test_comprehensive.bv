@@ -1,0 +1,76 @@
+generic(T, E)
+struct Result:
+    T value;
+    E error;
+    bool is_ok;
+
+struct Counter:
+    i32 count;
+    i32 max;
+
+methods Counter:
+    bool has_next(self):
+        return self.count < self.max;
+    
+    i32 next(self):
+        i32 val = self.count;
+        self.count = self.count + 1;
+        return val;
+    
+    void reset(self):
+        self.count = 0;
+
+i32 main():
+    Result(i32, i32) res1;
+    res1.value = 10;
+    res1.error = 0;
+    res1.is_ok = true;
+    
+    Result(i32, i32) res2;
+    res2.value = 20;
+    res2.error = 0;
+    res2.is_ok = true;
+    
+    Result(i32, i32) res3;
+    res3.value = 5;
+    res3.error = 1;
+    res3.is_ok = false;
+    
+    i32 sum = 0;
+    i32 valid_count = 0;
+    
+    Counter counter;
+    counter.count = 0;
+    counter.max = 5;
+    
+    while (counter.has_next()):
+        i32 i = counter.next();
+        
+        if (i == 0 && res1.is_ok && res1.value > 5):
+            sum = sum + res1.value;
+            valid_count = valid_count + 1;
+        elif (i == 1 && res2.is_ok && res2.value >= 20):
+            sum = sum + res2.value;
+            valid_count = valid_count + 1;
+        elif (i == 2 && !res3.is_ok):
+            sum = sum + 100;
+            valid_count = valid_count + 1;
+        elif (i == 3 && (res1.value < res2.value || res2.value == 20)):
+            sum = sum + 50;
+            valid_count = valid_count + 1;
+        else:
+            sum = sum + 1;
+    
+    counter.reset();
+    
+    for (i32 j = 0; j < 3; j = j + 1):
+        if (j == 0 && valid_count > 2):
+            sum = sum + 1000;
+        elif (j == 1 && valid_count == 4):
+            sum = sum + 2000;
+        elif (j == 2 && !(valid_count < 3)):
+            sum = sum + 3000;
+    
+    if (sum == 6181 && valid_count == 4):
+        return 1;
+    return 0;

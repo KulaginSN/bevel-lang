@@ -1,0 +1,5 @@
+int main():
+    i32 a = 42;
+    *i32 ptr = &a;
+    i32 b = *ptr;
+    return b;

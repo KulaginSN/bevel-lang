@@ -1,0 +1,11 @@
+struct Vector3:
+    f64 x;
+    f64 y;
+    f64 z;
+
+i32 main():
+    Vector3[3] points;
+    points[0].x = 1.0;
+    points[1].x = 2.0;
+    points[2].x = 3.0;
+    return 0;

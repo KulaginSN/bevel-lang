@@ -1,0 +1,5 @@
+i32 get_value():
+    return 42;
+
+i32 main():
+    return get_value();

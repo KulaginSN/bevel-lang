@@ -1,0 +1,9 @@
+generic(T, E)
+struct Result:
+    T value;
+    E error;
+    bool is_ok;
+
+i32 main():
+    Result(f64, string) res;
+    return 0;
