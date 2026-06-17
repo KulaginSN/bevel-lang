@@ -207,6 +207,8 @@ There are debug messages here, so don't pay attention to them.
 1. Bug fixes
 2. Bringing the compiler to a working state.
 3. A package manager bforge (like cargo).
+4. Standard Library.
+5. Memory management via arena and allocators, as well as separate ownership.
 
 ## Project Status
 
