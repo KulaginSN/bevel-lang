@@ -1,0 +1,60 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "Bevel",
+  "scopeName": "source.bv",
+  "patterns": [
+    { "include": "#comments" },
+    { "include": "#strings" },
+    { "include": "#numbers" },
+    { "include": "#directives" },
+    { "include": "#keywords" },
+    { "include": "#types" },
+    { "include": "#functions" }
+  ],
+  "repository": {
+    "comments": {
+      "patterns": [
+        {
+          "name": "comment.line.double-slash.bv",
+          "match": "//.*$"
+        },
+        {
+          "name": "comment.block.bv",
+          "begin": "/\\*",
+          "end": "\\*/"
+        }
+      ]
+    },
+    "strings": {
+      "name": "string.quoted.double.bv",
+      "begin": "\"",
+      "end": "\"",
+      "patterns": [
+        {
+          "name": "constant.character.escape.bv",
+          "match": "\\\\."
+        }
+      ]
+    },
+    "numbers": {
+      "name": "constant.numeric.bv",
+      "match": "\\b\\d+(\\.\\d+)?\\b"
+    },
+    "directives": {
+      "name": "keyword.control.directive.bv",
+      "match": "@(simd|parallel|inline|sizeOf|alignOf|extern|panic)\\b"
+    },
+    "keywords": {
+      "name": "keyword.control.bv",
+      "match": "\\b(const|mut|generic|methods|self|defer|macro|struct|enum|interface|if|elif|else|while|for|break|continue|switch|case|default|return|true|false|null|import|as|Ok|Err)\\b"
+    },
+    "types": {
+      "name": "storage.type.bv",
+      "match": "\\b(int|i8|i16|i32|i64|u8|u16|u32|u64|f32|f64|f128|bool|string|char|void)\\b"
+    },
+    "functions": {
+      "name": "entity.name.function.bv",
+      "match": "\\b([a-zA-Z_]\\w*)\\s*(?=\\()"
+    }
+  }
+}

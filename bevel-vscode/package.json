@@ -1,0 +1,38 @@
+{
+  "name": "bevel-lang",
+  "displayName": "Bevel Language Support",
+  "description": "Syntax highlighting and file icon for the Bevel (bv) programming language v0.1",
+  "version": "0.1.0",
+  "publisher": "bevel-dev",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "contributes": {
+    "languages": [
+      {
+        "id": "bevel",
+        "aliases": [
+          "Bevel",
+          "bevel"
+        ],
+        "extensions": [
+          ".bv"
+        ],
+        "icon": {
+          "light": "./icons/bevel-icon.svg",
+          "dark": "./icons/bevel-icon.svg"
+        }
+      }
+    ],
+    "grammars": [
+      {
+        "language": "bevel",
+        "scopeName": "source.bv",
+        "path": "./syntaxes/bevel.tmLanguage.json"
+      }
+    ]
+  }
+}
